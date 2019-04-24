@@ -1,0 +1,16 @@
+intents:
+  - faq
+
+entities:
+  - intent
+
+slots:
+  latest_response_name:
+    type: unfeaturized
+  followup_response_name:
+    type: unfeaturized
+  parse_data:
+    type: unfeaturized
+
+actions:
+- action_faq

@@ -1,0 +1,4 @@
+tricks:
+- watchdog.tricks.ShellCommandTrick:
+    patterns: ["*.py", "Dockerfile"]
+    shell_command: "docker-compose up -d --no-deps --force-recreate --build actions"

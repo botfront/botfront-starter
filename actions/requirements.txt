@@ -1,0 +1,2 @@
+requests
+rasa_core_sdk

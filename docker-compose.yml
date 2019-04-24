@@ -1,0 +1,103 @@
+version: "3.0"
+services:
+  botfront:
+    image: botfront/botfront
+    restart: always
+    networks: ['botfront-network']
+    ports:
+    - "8888:3000"
+    depends_on:
+    - mongo
+    env_file:
+    - local.env
+    environment:
+      PORT: 3000
+
+  botfront-webchat:
+    image:  botfront/botfront-webchat
+    networks: ["botfront-network"]
+    ports:
+      - "8080:3000"
+    depends_on:
+      - botfront-api
+    env_file:
+      - local.env
+
+  botfront-api:
+    image: gcr.io/botfront-project/botfront-api
+    networks: ["botfront-network"]
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8080"
+    env_file:
+      - local.env
+
+  nlu:
+    image:  botfront/rasa-nlu-bf
+    networks: ["botfront-network"]
+    ports:
+      - 5000:5000
+    volumes:
+      - ./models/nlu:/app/projects
+    command:
+      - start
+      - --path
+      - /app/projects
+
+  core:
+    image:  botfront/rasa-core-bf
+    restart: always
+    networks: ["botfront-network"]
+    depends_on: ['botfront-api']
+    ports: 
+      - 5005:5005
+    volumes: 
+      - ./models/core:/app/model
+      - ./project:/app/project
+    command: 
+      - start
+      - --core
+      - ./model
+      - --debug
+    env_file:
+      - local.env
+
+  actions:
+    build: ./actions
+    networks: ["botfront-network"]
+    ports:
+      - "5055:5055"
+    #    volumes:
+    #    - "./actions:/app/actions"
+    env_file:
+      - local.env
+
+  duckling:
+    image: botfront/duckling
+    networks: ["botfront-network"]
+    ports:
+      - "8000:8000"
+
+  mongo:
+    image: mongo
+    restart: always
+    networks: ["botfront-network"]
+    volumes:
+    - ./db:/data/db
+    ports:
+    - "27017:27017"
+    env_file:
+    - local.env
+    
+  mongoku:
+    image: huggingface/mongoku
+    networks: ["botfront-network"]
+    ports:
+    - "3100:3100"
+
+networks: 
+  botfront-network: {}
+volumes:
+  db:
