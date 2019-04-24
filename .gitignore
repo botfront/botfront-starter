@@ -1,3 +1,5 @@
 models
 .pytest_cache
 project/nlu
+db
+aggregated_domains.yaml
