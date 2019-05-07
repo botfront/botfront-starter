@@ -12,17 +12,7 @@ services:
     - local.env
     environment:
       PORT: 3000
-
-  botfront-webchat:
-    image:  botfront/botfront-webchat
-    networks: ["botfront-network"]
-    ports:
-      - "8080:3000"
-    depends_on:
-      - botfront-api
-    env_file:
-      - local.env
-
+      
   botfront-api:
     image: botfront/botfront-api
     networks: ["botfront-network"]
@@ -91,11 +81,6 @@ services:
     env_file:
     - local.env
     
-  mongoku:
-    image: huggingface/mongoku
-    networks: ["botfront-network"]
-    ports:
-    - "3100:3100"
 
 networks: 
   botfront-network: {}
