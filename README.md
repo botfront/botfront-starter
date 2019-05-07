@@ -1,11 +1,13 @@
 # Botfront Starter
-This is a boiler plate for your next Botfront / Rasa project.
+A boilerplate for your next Botfront / Rasa project.
 
 ## Usage
 
-git clone https://github.com/botfront/botfront-project
-cd botfront-project
+```bash
+git clone https://github.com/botfront/botfront-starter
+cd botfront-starter
 docker-compose up
+```
 
 ## License
 
