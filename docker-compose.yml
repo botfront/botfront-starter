@@ -24,7 +24,7 @@ services:
       - local.env
 
   botfront-api:
-    image: gcr.io/botfront-project/botfront-api
+    image: botfront/botfront-api
     networks: ["botfront-network"]
     restart: always
     depends_on:
