@@ -1,0 +1,26 @@
+%YAML 1.1
+---
+actions:
+- action_faq
+config:
+  store_entities_as_slots: true
+entities:
+- intent
+forms: []
+intents:
+- faq:
+    use_entities: true
+slots:
+  followup_response_name:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  latest_response_name:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  parse_data:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+templates: {}

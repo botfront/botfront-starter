@@ -1,0 +1,28 @@
+{
+  "max_histories": [
+    5,
+    null,
+    5,
+    2
+  ],
+  "rasa_core": "0.13.8",
+  "action_fingerprints": {
+    "action_listen": {
+      "slots": []
+    },
+    "action_faq": {
+      "slots": []
+    }
+  },
+  "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
+  "policy_names": [
+    "rasa_core.policies.keras_policy.KerasPolicy",
+    "rasa_core.policies.fallback.FallbackPolicy",
+    "rasa_core.policies.memoization.MemoizationPolicy",
+    "rasa_core.policies.form_policy.FormPolicy"
+  ],
+  "python": "3.5.6",
+  "trained_at": "20190507-215540",
+  "sklearn": "0.20.3",
+  "tensorflow": "1.12.2"
+}

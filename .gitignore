@@ -1,4 +1,4 @@
-models
+models/nlu
 .pytest_cache
 project/nlu
 db
